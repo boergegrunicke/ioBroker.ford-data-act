@@ -1,0 +1,53 @@
+{
+  "vehicles": [
+    {
+      "vin": "MOCK_MULTI_001",
+      "battery": {
+        "soc": 88,
+        "range_km": 336
+      },
+      "charging": {
+        "isCharging": true,
+        "power_kw": 11,
+        "batteryLevel": 0.88
+      },
+      "diagnostics": {
+        "odometer": 11011
+      },
+      "location": {
+        "latitude": 48.137154,
+        "longitude": 11.576124
+      },
+      "climate": {
+        "insideTempC": 23.1
+      },
+      "doors": {
+        "locked": true
+      },
+      "status": "charging"
+    },
+    {
+      "vin": "MOCK_MULTI_002",
+      "battery": {
+        "stateOfCharge": 0.31,
+        "rangeKm": 109
+      },
+      "charging": {
+        "isCharging": false,
+        "batteryLevel": 0.31
+      },
+      "mileage": 45123,
+      "position": {
+        "latitude": 50.110924,
+        "longitude": 8.682127
+      },
+      "climate": {
+        "interiorTemperature": 19.4
+      },
+      "security": {
+        "doorsLocked": false
+      },
+      "chargingStatus": "idle"
+    }
+  ]
+}

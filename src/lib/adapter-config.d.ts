@@ -4,7 +4,13 @@
 declare global {
 	namespace ioBroker {
 		interface AdapterConfig {
-			option1: string;
+				mock: boolean;
+			mockScenario: 'normal' | 'charging' | 'lowBattery';
+			clientId: string;
+			clientSecret: string;
+				refreshToken?: string;
+			interval: number;
+			mockDataPath: string;
 		}
 	}
 }

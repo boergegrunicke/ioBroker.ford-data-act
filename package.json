@@ -48,6 +48,8 @@
     "admin{,/!(src)/**}/*.{html,css,png,svg,jpg,js}",
     "build/",
     "www/",
+    "mockData.json",
+    "mock/**/*.json",
     "io-package.json",
     "LICENSE"
   ],

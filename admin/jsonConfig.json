@@ -2,9 +2,83 @@
 	"i18n": true,
 	"type": "panel",
 	"items": {
-		"option1": {
+		"mock": {
+			"type": "checkbox",
+			"label": "mock",
+			"help": "mock_help",
+			"newLine": true,
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 4,
+			"xl": 4
+		},
+		"mockScenario": {
+			"type": "select",
+			"label": "mockScenario",
+			"help": "mockScenario_help",
+			"hidden": "!data.mock",
+			"options": [
+				{
+					"label": "mockScenario_normal",
+					"value": "normal"
+				},
+				{
+					"label": "mockScenario_charging",
+					"value": "charging"
+				},
+				{
+					"label": "mockScenario_lowBattery",
+					"value": "lowBattery"
+				}
+			],
+			"newLine": true,
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 4,
+			"xl": 4
+		},
+		"clientId": {
 			"type": "text",
-			"label": "option1",
+			"label": "clientId",
+			"help": "clientId_help",
+			"newLine": true,
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 4,
+			"xl": 4
+		},
+		"clientSecret": {
+			"type": "password",
+			"label": "clientSecret",
+			"help": "clientSecret_help",
+			"newLine": true,
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 4,
+			"xl": 4
+		},
+		"mockDataPath": {
+			"type": "text",
+			"label": "mockDataPath",
+			"help": "mockDataPath_help",
+			"hidden": "!data.mock",
+			"newLine": true,
+			"xs": 12,
+			"sm": 12,
+			"md": 12,
+			"lg": 8,
+			"xl": 8
+		},
+		"interval": {
+			"type": "number",
+			"label": "interval",
+			"help": "interval_help",
+			"min": 0.5,
+			"step": 0.5,
 			"newLine": true,
 			"xs": 12,
 			"sm": 12,

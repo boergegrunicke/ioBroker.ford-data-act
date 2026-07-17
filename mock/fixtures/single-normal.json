@@ -1,0 +1,26 @@
+{
+  "vin": "MOCK_SINGLE_NORMAL_001",
+  "battery": {
+    "soc": 64,
+    "range_km": 242
+  },
+  "charging": {
+    "isCharging": false,
+    "power_kw": 0,
+    "batteryLevel": 0.64
+  },
+  "diagnostics": {
+    "odometer": 28124
+  },
+  "location": {
+    "latitude": 53.551086,
+    "longitude": 9.993682
+  },
+  "climate": {
+    "insideTempC": 21.2
+  },
+  "doors": {
+    "locked": true
+  },
+  "status": "parked"
+}

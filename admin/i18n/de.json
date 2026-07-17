@@ -1,4 +1,18 @@
 {
 	"ford-data-act adapter settings": "Adaptereinstellungen für ford-data-act",
-	"option1": "Option 1"
+	"mock": "Mock-Modus verwenden",
+	"mock_help": "Aktiviere lokalen Mock-Modus. Wenn deaktiviert, läuft der Adapter im Live-Modus.",
+	"mockScenario": "Mock-Szenario",
+	"mockScenario_help": "Szenario im Mock-Modus zur Emulation verschiedener Fahrzeugzustände.",
+	"mockScenario_normal": "Normal",
+	"mockScenario_charging": "Lädt",
+	"mockScenario_lowBattery": "Niedriger Akkustand",
+	"clientId": "Client-ID",
+	"clientId_help": "OAuth Client-ID aus deiner Ford-Developer-App.",
+	"clientSecret": "Client-Secret",
+	"clientSecret_help": "OAuth Client-Secret aus deiner Ford-Developer-App.",
+	"mockDataPath": "Pfad zur Mock-Datei",
+	"mockDataPath_help": "Pfad zur lokalen Mock-JSON-Datei, die im Mock-Modus verwendet wird.",
+	"interval": "Polling-Intervall (Minuten)",
+	"interval_help": "Standard ist 5. Im Mock-Modus sind für Entwicklung kleinere Intervalle möglich."
 }

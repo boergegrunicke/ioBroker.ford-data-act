@@ -1,0 +1,32 @@
+{
+  "vehicles": [
+    {
+      "vehicleIdentificationNumber": "MOCK_SPARSE_EDGE_001",
+      "battery": {
+        "stateOfCharge": 1,
+        "rangeKm": 0
+      },
+      "diagnostics": {
+        "odometer": 0
+      },
+      "doors": {
+        "locked": "locked"
+      },
+      "status": "ready"
+    },
+    {
+      "vin": "MOCK_SPARSE_EDGE_002",
+      "battery": {
+        "stateOfCharge": 0
+      },
+      "charging": {
+        "batteryLevel": 0,
+        "isCharging": 0
+      },
+      "security": {
+        "doorsLocked": "no"
+      },
+      "status": "standby"
+    }
+  ]
+}

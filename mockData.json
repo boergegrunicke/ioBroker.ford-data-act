@@ -1,0 +1,26 @@
+{
+  "vin": "VIRTUELLER_EXPLORER_123",
+  "battery": {
+    "soc": 78,
+    "range_km": 310
+  },
+  "charging": {
+    "isCharging": true,
+    "power_kw": 11,
+    "batteryLevel": 0.78
+  },
+  "diagnostics": {
+    "odometer": 18432
+  },
+  "location": {
+    "latitude": 52.520008,
+    "longitude": 13.404954
+  },
+  "climate": {
+    "insideTempC": 22.5
+  },
+  "doors": {
+    "locked": true
+  },
+  "status": "charging"
+}

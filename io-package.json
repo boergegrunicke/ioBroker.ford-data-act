@@ -76,7 +76,12 @@
 		]
 	},
 	"native": {
-		"option1": "option1"
+		"mock": true,
+		"mockScenario": "normal",
+		"clientId": "",
+		"clientSecret": "",
+		"interval": 5,
+		"mockDataPath": "mock/fixtures/single-normal.json"
 	},
 	"objects": [],
 	"instanceObjects": [

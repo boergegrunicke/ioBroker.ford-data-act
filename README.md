@@ -12,93 +12,108 @@
 
 ## ford-data-act adapter for ioBroker
 
-Describe your project here
+Read-only ioBroker adapter for Ford vehicle data (EU Data Act context).
 
-## Developer manual
-This section is intended for the developer. It can be deleted later.
+Current focus is a stable baseline with strong mock-mode support and robust state mapping.
 
-### DISCLAIMER
+## Current status (v1 baseline)
 
-Please make sure that you consider copyrights and trademarks when you use names or logos of a company and add a disclaimer to your README.
-You can check other adapters for examples or ask in the developer community. Using a name or logo of a company without permission may cause legal problems for you.
+Implemented:
+- Polling scheduler with overlap guard and clean shutdown.
+- Mock mode with local JSON source and scenario simulation.
+- OAuth callback server and token lifecycle scaffolding.
+- Vehicle state mapping for key telemetry.
+- Operational states for diagnostics (`info.connection`, `info.lastUpdate`, `info.lastError`, `info.vehicleCount`).
 
-### Getting started
+Not finalized yet:
+- Real Ford endpoint binding and production OAuth credentials flow against confirmed live endpoints.
 
-You are almost done, only a few steps left:
-1. Clone the repository from GitHub to a directory on your PC:
-	```bash
-	git clone https://github.com/boergegrunicke/ioBroker.ford-data-act
-	```
+## Configuration
 
-1. Head over to [src/main.ts](src/main.ts) and start programming!
+Admin settings are intentionally minimal:
+- `mock`: enable or disable mock mode.
+- `mockScenario`: simulation profile in mock mode (`normal`, `charging`, `lowBattery`).
+- `clientId`: OAuth client id (live mode).
+- `clientSecret`: OAuth client secret (live mode).
+- `interval`: polling interval in minutes.
+- `mockDataPath`: local JSON file path for mock payload.
 
-### Best Practices
-We've collected some [best practices](https://github.com/ioBroker/ioBroker.repositories#development-and-coding-best-practices) regarding ioBroker development and coding in general. If you're new to ioBroker or Node.js, you should
-check them out. If you're already experienced, you should also take a look at them - you might learn something new :)
+If `mock` is disabled, the adapter runs in live mode.
 
-### State Roles
-When creating state objects, it is important to use the correct role for the state. The role defines how the state should be interpreted by visualizations and other adapters. For a list of available roles and their meanings, please refer to the [state roles documentation](https://www.iobroker.net/#en/documentation/dev/stateroles.md).
+## Endpoint configuration (developer/internal)
 
-**Important:** Do not invent your own custom role names. If you need a role that is not part of the official list, please contact the ioBroker developer community for guidance and discussion about adding new roles.
+Live endpoints are not configured in the Admin UI.
+They are provided via environment variables:
 
-### Scripts in `package.json`
-Several npm scripts are predefined for your convenience. You can run them using `npm run <scriptname>`
-| Script name | Description |
-|-------------|-------------|
-| `build` | Compile the TypeScript sources. |
-| `watch` | Compile the TypeScript sources and watch for changes. |
-| `test:ts` | Executes the tests you defined in `*.test.ts` files. |
-| `test:package` | Ensures your `package.json` and `io-package.json` are valid. |
-| `test:integration` | Tests the adapter startup with an actual instance of ioBroker. |
-| `test` | Performs a minimal test run on package files and your tests. |
-| `check` | Performs a type-check on your code (without compiling anything). |
-| `coverage` | Generates code coverage using your test files. |
-| `lint` | Runs `ESLint` to check your code for formatting errors and potential bugs. |
-| `translate` | Translates texts in your adapter to all required languages, see [`@iobroker/adapter-dev`](https://github.com/ioBroker/adapter-dev#manage-translations) for more details. |
-| `release` | Creates a new release, see [`@alcalzone/release-script`](https://github.com/AlCalzone/release-script#usage) for more details. |
+- `FORD_AUTHORIZATION_URL`
+- `FORD_TOKEN_URL`
+- `FORD_VEHICLE_DATA_URL`
 
-### Configuring the compilation
-The adapter template uses [esbuild](https://esbuild.github.io/) to compile TypeScript and/or React code. You can configure many compilation settings 
-either in `tsconfig.json` or by changing options for the build tasks. These options are described in detail in the
-[`@iobroker/adapter-dev` documentation](https://github.com/ioBroker/adapter-dev#compile-adapter-files).
+Example:
 
-### Writing tests
-When done right, testing code is invaluable, because it gives you the 
-confidence to change your code while knowing exactly if and when 
-something breaks. A good read on the topic of test-driven development 
-is https://hackernoon.com/introduction-to-test-driven-development-tdd-61a13bc92d92. 
-Although writing tests before the code might seem strange at first, but it has very 
-clear upsides.
-
-The template provides you with basic tests for the adapter startup and package files.
-It is recommended that you add your own tests into the mix.
-
-### Publishing the adapter
-Using GitHub Actions, you can enable automatic releases on npm whenever you push a new git tag that matches the form 
-`v<major>.<minor>.<patch>`. We **strongly recommend** that you do. The necessary steps are described in `.github/workflows/test-and-release.yml`.
-
-Since you installed the release script, you can create a new
-release simply by calling:
 ```bash
-npm run release
+export FORD_AUTHORIZATION_URL="https://example.com/oauth/authorize"
+export FORD_TOKEN_URL="https://example.com/oauth/token"
+export FORD_VEHICLE_DATA_URL="https://example.com/vehicle-data"
 ```
-Additional command line options for the release script are explained in the
-[release-script documentation](https://github.com/AlCalzone/release-script#command-line).
 
-To get your adapter released in ioBroker, please refer to the documentation 
-of [ioBroker.repositories](https://github.com/ioBroker/ioBroker.repositories#requirements-for-adapter-to-get-added-to-the-latest-repository).
+## Mock mode quick start
 
-### Test the adapter manually with dev-server
-Please use `dev-server` to test and debug your adapter.
+1. Set `mock = true` in adapter config.
+2. Choose a `mockScenario`.
+3. Start adapter and inspect states under `vehicles.*`.
+4. Optional: choose one of the fixture files or set custom `mockDataPath`.
 
-You may install and start `dev-server` by calling from your dev directory:
+Available fixture files:
+- `mock/fixtures/single-normal.json`
+- `mock/fixtures/multi-vehicle.json`
+- `mock/fixtures/sparse-edge.json`
+
+## Mapped states (current)
+
+Detailed source-to-target mapping is documented in [docs/mapping-matrix.md](docs/mapping-matrix.md).
+
+Per vehicle:
+- `battery.soc`
+- `battery.range_km`
+- `status`
+- `odometer`
+- `charging.power_kw`
+- `charging.isCharging`
+- `location.latitude`
+- `location.longitude`
+- `climate.insideTempC`
+- `doors.locked`
+- `rawJson`
+
+Global info:
+- `info.connection`
+- `info.lastUpdate`
+- `info.lastError`
+- `info.vehicleCount`
+
+## Development
+
+Useful scripts:
+
+```bash
+npm run check
+npm run lint
+npm run test
+npm run test:integration
+```
+
+Manual dev-server usage:
+
 ```bash
 npm install --global @iobroker/dev-server
 dev-server setup
 dev-server watch
 ```
 
-Please refer to the [`dev-server` documentation](https://github.com/ioBroker/dev-server#readme) for more details.
+## Disclaimer
+
+Ford is a trademark of Ford Motor Company. This project is independent and not affiliated with or endorsed by Ford.
 
 ## Changelog
 <!--
@@ -107,7 +122,10 @@ Please refer to the [`dev-server` documentation](https://github.com/ioBroker/dev
 -->
 
 ### **WORK IN PROGRESS**
-* (boergegrunicke) initial release
+* (boergegrunicke) simplify config to mock toggle + essential credentials
+* (boergegrunicke) add mock scenarios and expanded vehicle state mapping
+* (boergegrunicke) add runtime helper unit tests and update documentation
+* (boergegrunicke) add mock fixture set and mapping matrix documentation
 
 ## License
 MIT License
