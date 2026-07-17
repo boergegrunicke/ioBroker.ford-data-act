@@ -1,0 +1,105 @@
+{
+	"common": {
+		"name": "ford-data-act",
+		"version": "0.0.1",
+		"news": {
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"uk": "Початкова версія",
+				"zh-cn": "首次出版"
+			}
+		},
+		"titleLang": {
+			"en": "Ford (EU Data Act)",
+			"de": "Ford (EU-Datenschutzgesetz)",
+			"ru": "Форд (Закон ЕС о данных)",
+			"pt": "Ford (Lei de Proteção de Dados da UE)",
+			"nl": "Ford (EU-gegevenswet)",
+			"fr": "Ford (Loi européenne sur les données)",
+			"it": "Ford (Legge europea sulla protezione dei dati)",
+			"es": "Ford (Ley de Protección de Datos de la UE)",
+			"pl": "Ford (ustawa UE o danych)",
+			"uk": "Форд (Закон ЄС про дані)",
+			"zh-cn": "福特（欧盟数据法案）"
+		},
+		"desc": {
+			"en": "ford-data-act",
+			"de": "ford-data-act",
+			"ru": "форд-данные-акт",
+			"pt": "lei de dados da Ford",
+			"nl": "ford-data-act",
+			"fr": "loi sur les données Ford",
+			"it": "legge sui dati Ford",
+			"es": "Ley de datos de Ford",
+			"pl": "ustawa o danych Forda",
+			"uk": "закон про дані Ford",
+			"zh-cn": "福特数据行动"
+		},
+		"authors": ["boergegrunicke <boerge@grunicke.de>"],
+		"keywords": ["template", "automation", "IoT", "integration"],
+		"licenseInformation": {
+			"type": "free",
+			"license": "MIT"
+		},
+		"platform": "Javascript/Node.js",
+		"icon": "ford-data-act.svg",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/boergegrunicke/ioBroker.ford-data-act/main/admin/ford-data-act.svg",
+		"readme": "https://github.com/boergegrunicke/ioBroker.ford-data-act/blob/main/README.md",
+		"loglevel": "info",
+		"tier": 3,
+		"mode": "daemon",
+		"type": "vehicle",
+		"compact": true,
+		"connectionType": "cloud",
+		"dataSource": "poll",
+		"adminUI": {
+			"config": "json"
+		},
+		"dependencies": [
+			{
+				"js-controller": ">=6.0.11"
+			}
+		],
+		"globalDependencies": [
+			{
+				"admin": ">=7.0.23"
+			}
+		]
+	},
+	"native": {
+		"option1": "option1"
+	},
+	"objects": [],
+	"instanceObjects": [
+		{
+			"_id": "info",
+			"type": "channel",
+			"common": {
+				"name": "Information"
+			},
+			"native": {}
+		},
+		{
+			"_id": "info.connection",
+			"type": "state",
+			"common": {
+				"role": "indicator.connected",
+				"name": "Device or service connected",
+				"type": "boolean",
+				"read": true,
+				"write": false,
+				"def": false
+			},
+			"native": {}
+		}
+	]
+}
