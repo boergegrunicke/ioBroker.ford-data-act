@@ -6,7 +6,8 @@
 	"[typescript]": {
 		"editor.codeActionsOnSave": {
 			"source.organizeImports": true
-		}
+		},
+		"editor.defaultFormatter": "vscode.typescript-language-features"
 	},
 	"json.schemas": [
 		{
