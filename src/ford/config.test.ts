@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { isMockEnabled, normalizeMockScenario, normalizeSoc } from './lib/runtime-config.ts';
+import { isMockEnabled, normalizeMockScenario, normalizeSoc } from './config.ts';
 
 describe('runtime-config helpers', () => {
 	describe('isMockEnabled', () => {
