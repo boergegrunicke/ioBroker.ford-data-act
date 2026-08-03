@@ -42,6 +42,9 @@
     "ts-node": "^10.9.2",
     "typescript": "~6.0.3"
   },
+  "//": [
+    "typescript is pinned below 7.0 on purpose: TypeScript 7 is the new native/Go-based compiler and, as of 2026-08, typescript-eslint has no support for it (it hard-errors on TS >= 7.0 at startup, see https://github.com/typescript-eslint/typescript-eslint/issues/10940), and @iobroker/adapter-dev's build step locates `tsc` via the `typescript` package's own `bin` field, which breaks under the interim MS compat-shim workaround (aliasing `typescript` to `@typescript/typescript6`). Revisit this pin once typescript-eslint and/or @iobroker/adapter-dev add TS 7 support upstream."
+  ],
   "main": "build/main.js",
   "files": [
     "admin{,/!(src)/**}/!(tsconfig|tsconfig.*|.eslintrc).{json,json5}",
